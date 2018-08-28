@@ -16,6 +16,7 @@ public class LoginServlet extends HttpServlet {
     public static String invalidUserError = "";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      //  request.setAttribute("from", request.getParameter("from"));
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
         }
