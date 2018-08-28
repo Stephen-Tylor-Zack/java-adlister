@@ -24,7 +24,7 @@ CREATE TABLE ads (
     user_id INT UNSIGNED NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    price DOUBLE UNSIGNED NOT NULL,
+    price INT UNSIGNED NOT NULL,
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
     cat_id INT UNSIGNED NOT NULL,
@@ -45,4 +45,12 @@ CREATE TABLE ads_cat (
 );
 
 INSERT INTO categories (category)
-VALUES ('Xbox'), ('Playstation'), ('Nintendo'), ('PC');
+VALUES ('Xbox'),
+       ('Playstation'),
+       ('Nintendo'),
+       ('PC');
+
+INSERT INTO ads (user_id, title, description, price, city, state, cat_id)
+VALUES (1, 'Halo 5: Guardians', 'For Xbox One, first-person shooter.', 15, 'San Antonio', 'Texas', 1),
+       (1, 'God of War', 'For Playstation 4, action-adventure, rpg video game.', 35, 'San Antonio', 'Texas', 2),
+       (2, 'Mario Kart 8', 'For Nintendo Switch, cartoon, fantasy racing game.', 40, 'Austin', 'Texas', 3);
