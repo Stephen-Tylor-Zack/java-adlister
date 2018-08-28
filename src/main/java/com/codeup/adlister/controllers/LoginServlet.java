@@ -13,6 +13,8 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
+    public static String invalidUserError = "";
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
@@ -27,6 +29,7 @@ public class LoginServlet extends HttpServlet {
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
         if (user == null) {
+            invalidUserError = " Invalid User Credentials";
             response.sendRedirect("/login");
             return;
         }
@@ -35,9 +38,13 @@ public class LoginServlet extends HttpServlet {
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
+            invalidUserError = "";
             response.sendRedirect("/profile");
-        } else {
+        }
+        else {
+            invalidUserError = " Invalid User Credentials";
             response.sendRedirect("/login");
         }
     }
 }
+
