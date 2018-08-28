@@ -10,7 +10,9 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <div class="row justify-content-center">
+        <h1>Find your next adventure here...</h1>
+    </div>
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
@@ -20,5 +22,6 @@
     </c:forEach>
 </div>
 
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>

@@ -74,6 +74,7 @@
 </div>
 
 
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 <script>
     window.onload = function() {
 
@@ -110,6 +111,5 @@
     confirm_password.onkeyup = validatePassword;
 
 </script>
-
 </body>
 </html>
