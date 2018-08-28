@@ -30,8 +30,20 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("/login");
 
         } catch (Exception e) {
-            error = "\n\n Error, username already taken.";
-            response.sendRedirect("/register");
+            if (DaoFactory.getUsersDao().findByUsername(username) != null) {
+                System.out.println("test2");
+
+                error = "\n\n Error, username is already taken.";
+                response.sendRedirect("/register");
+                return;
+            }
+            if (DaoFactory.getUsersDao().findByEmail(email) != null) {
+                System.out.println("test1");
+
+                error = "\n\n Error, email is already taken.";
+                response.sendRedirect("/register");
+                return;
+            }
         }
     }
 }

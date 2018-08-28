@@ -16,18 +16,22 @@ public class LoginServlet extends HttpServlet {
     public static String invalidUserError = "";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      //  request.setAttribute("from", request.getParameter("from"));
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
-            return;
         }
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response ) throws IOException {
+        if (request.getSession().getAttribute("user") != null) {
+            response.sendRedirect("/profile");
+        }
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User user = DaoFactory.getUsersDao().findByUsername(username);
 
+        User user = DaoFactory.getUsersDao().findByUsername(username);
         if (user == null) {
             invalidUserError = " Invalid User Credentials";
             response.sendRedirect("/login");
@@ -37,9 +41,17 @@ public class LoginServlet extends HttpServlet {
         boolean validAttempt = Password.check(password, user.getPassword());
 
         if (validAttempt) {
-            request.getSession().setAttribute("user", user);
+            String referal = request.getParameter("from");
             invalidUserError = "";
-            response.sendRedirect("/profile");
+            request.getSession().setAttribute("user", user);
+            System.out.println(referal);
+            if (referal.equalsIgnoreCase("http://localhost:8080/login")) {
+                response.sendRedirect("/profile");
+
+            }
+            else {
+                response.sendRedirect(referal);
+            }
         }
         else {
             invalidUserError = " Invalid User Credentials";
@@ -47,4 +59,3 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
-

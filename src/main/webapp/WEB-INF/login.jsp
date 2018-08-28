@@ -20,9 +20,15 @@
             <input id="password" name="password" class="form-control" type="password" required>
         </div>
         <input type="submit" class="btn btn-primary btn-block" value="Log In">
+        <input id="from" type="hidden" name="from">
     </form>
 </div>
 
-<jsp:include page="/WEB-INF/partials/footer.jsp" />
+<script>
+
+    var referal = document.referrer;
+    document.getElementById("from").value = referal;
+</script>
+
 </body>
 </html>
