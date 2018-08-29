@@ -19,8 +19,10 @@
                 <a class="nav-link" href="/profile">Profile</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form action="/ads" class="navbar-form form-inline my-2 my-lg-0" role="search">
+            <div class="form-group">
+                <input id="search" class="form-control mr-sm-2" name="search" type="search" placeholder="Search NLGL" aria-label="Search">
+            </div>
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
