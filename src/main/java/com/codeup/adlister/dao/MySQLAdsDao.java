@@ -30,7 +30,9 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+            stmt = connection.prepareStatement("SELECT * FROM ads LEFT JOIN users u ON ads.user_id = u.id " +
+                    "LEFT JOIN ads_cat a ON ads.id = a.ads_id " +
+                    "LEFT JOIN categories c ON a.cats_id = c.id");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -55,12 +57,37 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public Ad findById(long id) {
+        String query = "SELECT t.*, t2.username, t2.email, t3.category " +
+                "FROM ads t LEFT JOIN users t2 ON t.user_id = t2.id " +
+                "LEFT JOIN ads_cat ON cat_id " +
+                "LEFT JOIN categories t3 ON ads_cat.cats_id = t3.category " +
+                "WHERE t.id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding that ad", e);
+        }
+    }
+
+
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
                 rs.getLong("id"),
                 rs.getLong("user_id"),
                 rs.getString("title"),
-                rs.getString("description")
+                rs.getString("description"),
+                rs.getDouble("price"),
+                rs.getString("city"),
+                rs.getString("state"),
+                rs.getLong("cat_id"),
+                rs.getString("username")
         );
     }
 
