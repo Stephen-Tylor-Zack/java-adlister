@@ -16,10 +16,10 @@ public class DeleteAdServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getQueryString();
-        Long id = Long.valueOf(query.substring(3, 4));
+        Long id = Long.valueOf(query.substring(3));
+        System.out.println(id);
         DaoFactory.getAdsDao().delete(id);
-        response.sendRedirect("/profile");
-        request.getRequestDispatcher("/WEB-INF/ads/delete-ad.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

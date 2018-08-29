@@ -16,8 +16,8 @@ public class EditAdServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getQueryString();
-        Long id = Long.valueOf(query.substring(3, 4));
-        System.out.println();
+        Long id = Long.valueOf(query.substring(3));
+        System.out.println(id);
 
         Ad curAd = DaoFactory.getAdsDao().findOneAd(id);
         request.getSession().setAttribute("ad",curAd);
@@ -34,10 +34,6 @@ public class EditAdServlet extends HttpServlet {
         String city = request.getParameter("city");
         String state = request.getParameter("state");
 
-
-
-
-
         try {
             Ad ad = new Ad(id, title, description, price, city, state);
             System.out.println(ad.getId());
@@ -48,7 +44,5 @@ public class EditAdServlet extends HttpServlet {
             response.sendRedirect("/profile");
 
         }
-
-
     }
 }
