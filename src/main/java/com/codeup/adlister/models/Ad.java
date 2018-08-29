@@ -5,14 +5,37 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    private double price;
+    private int price;
     private String city;
     private String state;
-    private long cat_id;
     private String username;
 
+    public Ad(long id, long userId, String title, String description, int price, String city, String state) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.city = city;
+        this.state = state;
+    }
 
+    public Ad(long userId, String title, String description, int price, String city, String state) {
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.city = city;
+        this.state = state;
+    }
 
+    public Ad(String title, String description, int price, String city, String state) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.city = city;
+        this.state = state;
+    }
 
     public Ad(long id, long userId, String title, String description, double price, String city, String state, long cat_id, String username) {
         this.id = id;
@@ -74,9 +97,11 @@ public class Ad {
         this.description = description;
     }
 
-    public double getPrice() {return price;}
+    public int getPrice() {
+        return price;
+    }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -84,7 +109,7 @@ public class Ad {
         return city;
     }
 
-    public void setCity(String title) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -92,16 +117,8 @@ public class Ad {
         return state;
     }
 
-    public void setState(String title) {
-        this.city = state;
-    }
-
-    public long getCat_id() {
-        return cat_id;
-    }
-
-    public void setCat_id(long id) {
-        this.cat_id = cat_id;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getUsername() {
@@ -111,7 +128,4 @@ public class Ad {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
-
 }
