@@ -26,6 +26,32 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
+        List<Ad> ads = new ArrayList<>();
+        while (rs.next()) {
+            ads.add(extractAd(rs));
+        }
+        return ads;
+    }
+
+    @Override
+    public List<Ad> findBySearch(String search){
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT ads.*, users.username " +
+                    "FROM ads " +
+                    "JOIN users " +
+                    "ON users.id = ads.user_id " +
+                    "WHERE title LIKE ? OR description LIKE ?");
+            stmt.setString(1, "%" + search + "%");
+            stmt.setString(2, "%" + search + "%");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving search results.", e);
+        }
+    }
+
     @Override
     public List<Ad> all() {
         PreparedStatement stmt = null;
@@ -169,33 +195,8 @@ public class MySQLAdsDao implements Ads {
             ps.setLong(1, adId);
             ps.executeUpdate();
             return Long.valueOf(2);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Error deleting ad", e);
         }
-
-    @Override
-    public List<Ad> findBySearch(String search) {
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement("SELECT ads.*, users.username " +
-                                                    "FROM ads " +
-                                                    "JOIN users " +
-                                                    "ON users.id = ads.user_id " +
-                                                    "WHERE title LIKE ? OR description LIKE ?");
-            stmt.setString(1, "%" + search + "%");
-            stmt.setString(2, "%" + search + "%");
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving search results.", e);
-        }
-    }
-
-    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
-        List<Ad> ads = new ArrayList<>();
-        while (rs.next()) {
-            ads.add(extractAd(rs));
-        }
-        return ads;
     }
 }
