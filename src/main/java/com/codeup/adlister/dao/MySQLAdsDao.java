@@ -64,7 +64,7 @@ public class MySQLAdsDao implements Ads {
     public Ad findById(long id) {
         String query = "SELECT t.*, t2.username, t2.email, t3.category " +
                 "FROM ads t LEFT JOIN users t2 ON t.user_id = t2.id " +
-                "LEFT JOIN ads_cat ON cat_id " +
+                "LEFT JOIN ads_cat ON ads_id " +
                 "LEFT JOIN categories t3 ON ads_cat.cats_id = t3.category " +
                 "WHERE t.id = ? LIMIT 1";
         try {
@@ -86,10 +86,9 @@ public class MySQLAdsDao implements Ads {
                 rs.getLong("user_id"),
                 rs.getString("title"),
                 rs.getString("description"),
-                rs.getDouble("price"),
+                rs.getInt("price"),
                 rs.getString("city"),
                 rs.getString("state"),
-                rs.getLong("cat_id"),
                 rs.getString("username")
         );
     }
