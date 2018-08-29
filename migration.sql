@@ -27,20 +27,17 @@ CREATE TABLE ads (
     price INT UNSIGNED NOT NULL,
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
-    cat_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE CASCADE,
-    FOREIGN KEY (cat_id) REFERENCES categories(id)
         ON DELETE CASCADE
 );
 
 CREATE TABLE ads_cat (
   ads_id INT UNSIGNED NOT NULL,
-  cat_id INT UNSIGNED NOT NULL,
+  cats_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (ads_id) REFERENCES ads(id)
         ON DELETE CASCADE,
-  FOREIGN KEY (cat_id) REFERENCES categories(id)
+  FOREIGN KEY (cats_id) REFERENCES categories(id)
         ON DELETE CASCADE
 );
 
@@ -50,7 +47,33 @@ VALUES ('Xbox'),
        ('Nintendo'),
        ('PC');
 
-INSERT INTO ads (user_id, title, description, price, city, state, cat_id)
-VALUES (1, 'Halo 5: Guardians', 'For Xbox One, first-person shooter.', 15, 'San Antonio', 'Texas', 1),
-       (1, 'God of War', 'For Playstation 4, action-adventure, rpg video game.', 35, 'San Antonio', 'Texas', 2),
-       (2, 'Mario Kart 8', 'For Nintendo Switch, cartoon, fantasy racing game.', 40, 'Austin', 'Texas', 3);
+INSERT INTO ads (user_id, title, description, price, city, state)
+VALUES (1, 'Halo 5: Guardians', 'First-person shooter, Xbox One.', 15, 'San Antonio', 'Texas'),
+       (1, 'God of War', 'Action-adventure, rpg video game, PS4.', 35, 'San Antonio', 'Texas'),
+       (2, 'Mario Kart 8', 'Cartoon, fantasy racing game, Nintendo Switch.', 40, 'Austin', 'Texas'),
+       (2, 'Overwatch', 'Team based strategy first-person shooter.', 30, 'Austin', 'Texas');
+
+INSERT INTO ads_cat(ads_id, cats_id)
+VALUES (1, 1), (2, 2), (3, 3), (4, 4);
+
+SELECT categories.category
+FROM categories
+  JOIN ads_cat
+    ON ads_cat.cats_id = categories.id
+WHERE cats_id IN (
+  SELECT ads.id
+  FROM ads
+  WHERE ads.id = ads_cat.cats_id
+);
+
+SELECT *
+FROM ads;
+
+SELECT *
+FROM ads_cat;
+
+SELECT *
+FROM categories;
+
+SELECT *
+FROM users;

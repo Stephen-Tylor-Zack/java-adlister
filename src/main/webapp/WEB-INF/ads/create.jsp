@@ -19,6 +19,25 @@
             <label for="description">Description</label>
             <textarea id="description" name="description" class="form-control" type="text"></textarea>
         </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input id="price" name="price" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input id="city" name="city" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" name="state" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label>Category</label><br>
+            <input type="checkbox" name="cats_id" value="1"> Xbox<br>
+            <input type="checkbox" name="cats_id" value="2"> Playstation<br>
+            <input type="checkbox" name="cats_id" value="3"> Nintendo<br>
+            <input type="checkbox" name="cats_id" value="4"> PC <br>
+        </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
 </div>
