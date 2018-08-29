@@ -18,6 +18,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
             </li>
+            <c:choose>
+                <c:when test="${sessionScope.user != null}" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ads/create">Create Ad</a>
+                    </li>
+                </c:when>
+            </c:choose>
         </ul>
         <form action="/ads" class="navbar-form form-inline my-2 my-lg-0" role="search">
             <div class="form-group">
