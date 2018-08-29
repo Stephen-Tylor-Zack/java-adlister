@@ -8,6 +8,7 @@ public class Ad {
     private int price;
     private String city;
     private String state;
+    private String username;
 
     public Ad(long id, long userId, String title, String description, int price, String city, String state) {
         this.id = id;
@@ -36,18 +37,33 @@ public class Ad {
         this.state = state;
     }
 
-    public Ad(long id, long userId, String title, String description) {
+    public Ad(long id, long userId, String title, String description, double price, String city, String state, long cat_id, String username) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.price = price;
+        this.city = city;
+        this.state = state;
+        this.cat_id = cat_id;
+        this.username = username;
+
+
     }
 
-    public Ad(long userId, String title, String description) {
+    public Ad(long userId, String title, String description, double price, String city, String state, long cat_id) {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.price = price;
+        this.city = city;
+        this.state = state;
+        this.cat_id = cat_id;
     }
+
+    public Ad(long id, String title, String description) {
+    }
+
 
     public long getId() {
         return id;
@@ -103,5 +119,13 @@ public class Ad {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

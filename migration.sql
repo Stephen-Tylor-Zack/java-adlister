@@ -41,6 +41,28 @@ CREATE TABLE ads_cat (
         ON DELETE CASCADE
 );
 
+SELECT categories.category
+FROM categories
+ JOIN ads_cat
+   ON ads_cat.cats_id = categories.id
+WHERE cats_id IN (
+ SELECT ads.cat_id
+ FROM ads
+ WHERE ads_cat.ads_id = 2
+);
+
+SELECT t.*, t2.username, t2.email, t3.category
+FROM ads t LEFT JOIN users t2 ON t.user_id = t2.id
+LEFT JOIN ads_cat ON cat_id
+LEFT JOIN categories t3 ON ads_cat.cats_id = t3.category
+WHERE t.id = 2 LIMIT 1;
+
+
+INSERT INTO ads_cat(ads_id, cats_id)
+VALUES (1, 'Xbox'), (2, 'Playstation'), (3, 'Nintendo'), (4, 'PC');
+
+
+
 INSERT INTO categories (category)
 VALUES ('Xbox'),
        ('Playstation'),
