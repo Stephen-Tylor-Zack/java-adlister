@@ -53,13 +53,13 @@
     <h1>Please fill in your information.</h1>
     <form action="/register" method="post">
         <div class="form-group">
-            <label for="username">Name</label>
+            <label for="username">Username</label>
             <%=error%>
             <input id="username" name="username" class="form-control" type="text" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please enter a proper email address format:  Example@example.com" required>
+            <input id="email" name="email" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please enter a proper email address format:  Example@example.com" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -74,6 +74,7 @@
 </div>
 
 
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 <script>
     window.onload = function() {
 
@@ -110,6 +111,5 @@
     confirm_password.onkeyup = validatePassword;
 
 </script>
-
 </body>
 </html>
