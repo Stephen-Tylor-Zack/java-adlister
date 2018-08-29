@@ -9,6 +9,14 @@ public interface Ads {
     List<Ad> all();
   
     Long insert(Ad ad);
+  
+    List<Ad> userProfileAds(Long id);
+  
+    Long update(Ad ad);
+  
+    Ad findOneAd(Long adId);
+  
+    Long delete(Long adId);
 
     Ad findById(long id);
   
