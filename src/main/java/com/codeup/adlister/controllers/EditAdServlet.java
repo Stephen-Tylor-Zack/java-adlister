@@ -17,7 +17,6 @@ public class EditAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getQueryString();
         Long id = Long.valueOf(query.substring(3));
-        System.out.println(id);
 
         Ad curAd = DaoFactory.getAdsDao().findOneAd(id);
         request.getSession().setAttribute("ad",curAd);
@@ -36,7 +35,6 @@ public class EditAdServlet extends HttpServlet {
 
         try {
             Ad ad = new Ad(id, title, description, price, city, state);
-            System.out.println(ad.getId());
             DaoFactory.getAdsDao().update(ad);
             request.getSession().setAttribute("ad", ad);
             response.sendRedirect("/profile");

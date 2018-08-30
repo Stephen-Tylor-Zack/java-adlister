@@ -24,12 +24,11 @@
                 <div class="col-4-md">
                     <h1>${ad.title}</h1>
                     <h2>${ad.description}</h2>
-                    <input id="id" type="number" value="${ad.id}" name="id">
-                    <button onclick="location.href = '/ads/edit-ad'">Edit</button><button>Delete</button>
-                    <a href="/ads/edit-ad?id=${ad.id}">Edit</a>
-                    <a id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
-
-
+                    <input id="id" type="hidden" value="${ad.id}" name="id">
+                    <c:if test="${ad.username == sessionScope.user.username}">
+                    <a class="btn btn-primary" href="/ads/edit-ad?id=${ad.id}">Edit</a>
+                    <a class="btn btn-primary deletebtn" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
+                    </c:if>
 
                 </div>
             </c:forEach>
@@ -41,12 +40,18 @@
     <jsp:include page="/WEB-INF/partials/footer.jsp" />
 
 <script>
-    document.getElementById("deletebtn").addEventListener("click", function (ev) {
-      var deleteChoice = confirm("Are you sure you want to delete?");
-        if (deleteChoice) {
 
-        }
-    });
+    var elems = document.getElementsByClassName("deletebtn");
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+
+
+
+
     console.log(document.getElementById("adId" + "${ad.id}"));
 
 </script>

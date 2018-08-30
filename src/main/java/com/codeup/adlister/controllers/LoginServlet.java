@@ -39,15 +39,13 @@ public class LoginServlet extends HttpServlet {
         }
 
         boolean validAttempt = Password.check(password, user.getPassword());
-
+        System.out.println(user.getId());
         if (validAttempt) {
             String referal = request.getParameter("from");
             invalidUserError = "";
             request.getSession().setAttribute("user", user);
-            System.out.println(referal);
             if (referal.equalsIgnoreCase("http://localhost:8080/login")) {
                 response.sendRedirect("/profile");
-
             }
             else {
                 response.sendRedirect(referal);

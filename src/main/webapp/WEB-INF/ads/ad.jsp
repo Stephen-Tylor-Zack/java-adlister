@@ -24,6 +24,10 @@
     <c:out value="post by: ${ad.username}"/><br>
     <c:out value="price: $${ad.price}"/><br>
     <c:out value="location: ${ad.city}, ${ad.state}"/><br>
+    <c:if test="${ad.username == sessionScope.user.username}">
+        <a class="btn btn-primary" href="/ads/edit-ad?id=${ad.id}">Edit</a>
+        <a class="btn btn-primary" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
+    </c:if>
 
 
 </p>
