@@ -46,16 +46,18 @@ FROM categories
  JOIN ads_cat
    ON ads_cat.cats_id = categories.id
 WHERE cats_id IN (
- SELECT ads.cat_id
+ SELECT ads.id
  FROM ads
- WHERE ads_cat.ads_id = 2
+ WHERE ads_cat.ads_id = 7
 );
 
 SELECT t.*, t2.username, t2.email, t3.category
 FROM ads t LEFT JOIN users t2 ON t.user_id = t2.id
-LEFT JOIN ads_cat ON cat_id
+LEFT JOIN ads_cat ON ads_id
 LEFT JOIN categories t3 ON ads_cat.cats_id = t3.category
-WHERE t.id = 2 LIMIT 1;
+WHERE t.id = 9 LIMIT 1;
+
+DELETE FROM `ads` WHERE `id` > 0;
 
 
 INSERT INTO ads_cat(ads_id, cats_id)
@@ -85,8 +87,10 @@ FROM categories
 WHERE cats_id IN (
   SELECT ads.id
   FROM ads
-  WHERE ads.id = ads_cat.cats_id
+  WHERE ads_cat.cats_id = 'Playstation'
 );
+
+select * from ads_cat JOIN ads ON ads_cat.ads_id = ads.id JOIN categories ON ads_cat.cats_id = categories.id where cats_id = 2;
 
 SELECT *
 FROM ads;
