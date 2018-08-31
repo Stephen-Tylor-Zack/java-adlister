@@ -127,15 +127,6 @@ public class MySQLAdsDao implements Ads {
         String query = "UPDATE ads SET title = ?, description = ?, price = ?, city = ?, state = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            System.out.println("This is the DAO section.");
-            System.out.println(ad.getTitle());
-            System.out.println(ad.getDescription());
-            System.out.println(ad.getCity());
-            System.out.println(ad.getPrice());
-            System.out.println(ad.getState());
-            System.out.println(ad.getId());
-            System.out.println("End the DAO section.");
-
 
             stmt.setString(1, ad.getTitle());
             stmt.setString(2, ad.getDescription());

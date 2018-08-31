@@ -49,6 +49,7 @@ WHERE cats_id IN (
  SELECT ads.id
  FROM ads
  WHERE ads_cat.ads_id = 1
+
 );
 
 SELECT t.*, t2.username, t2.email, t3.category
@@ -62,6 +63,7 @@ SELECT ads.*, categories.category
                     JOIN categories
                     ON categories.id = ads.cats_id
                     WHERE category = 'playstation';
+
 
 
 INSERT INTO ads_cat(ads_id, cats_id)
@@ -90,10 +92,11 @@ FROM categories
 WHERE cats_id IN (
   SELECT ads.id
   FROM ads
-  WHERE ads.id = ads_cat.cats_id
+  WHERE ads_cat.cats_id = 'Playstation'
 );
 
 select * from ads_cat JOIN ads ON ads_cat.ads_id = ads.id JOIN categories ON ads_cat.cats_id = categories.id where cats_id = 1;
+
 
 
 

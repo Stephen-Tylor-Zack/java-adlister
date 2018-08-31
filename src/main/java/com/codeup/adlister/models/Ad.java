@@ -2,7 +2,9 @@ package com.codeup.adlister.models;
 
 public class Ad {
     private String category;
+
     private int cats_id;
+
     private long id;
     private long userId;
     private String title;
@@ -57,6 +59,7 @@ public class Ad {
     }
 
     public Ad(long id, long user_id, String title, String description, int price, String city, String state, int cats_id) {
+
         this.id = id;
         this.userId = user_id;
         this.title = title;
@@ -69,6 +72,7 @@ public class Ad {
     }
 
     public Ad(long id, long user_id, String title, String description, int price, String city, String state, int cats_id, String category) {
+
         this.id = id;
         this.userId = user_id;
         this.title = title;
@@ -77,6 +81,7 @@ public class Ad {
         this.city = city;
         this.state = state;
         this.cats_id = cats_id;
+
         this.category = category;
     }
 

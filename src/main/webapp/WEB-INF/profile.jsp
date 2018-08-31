@@ -24,10 +24,8 @@
                 <div class="col-4-md">
                     <h1>${ad.title}</h1>
                     <h2>${ad.description}</h2>
-                    <input id="id" type="number" value="${ad.id}" name="id">
-                    <button onclick="location.href = '/ads/edit-ad'">Edit</button><button>Delete</button>
-                    <a href="/ads/edit-ad?id=${ad.id}">Edit</a>
-                    <a id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
+                    <a class="btn btn-primary" href="/ads/edit-ad?id=${ad.id}">Edit</a>
+                    <a class="btn btn-primary" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
 
 
 
