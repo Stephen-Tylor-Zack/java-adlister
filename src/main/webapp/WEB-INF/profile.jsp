@@ -1,4 +1,3 @@
-<%@ page import="com.codeup.adlister.util.Igdb" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -25,22 +24,19 @@
                 <div class="col-4-md gameList">
                     <h1>${ad.title}</h1>
                     <input class="gameTitle" type="hidden" value="${ad.title}" >
-                    <img src="${result[0].cover.url}">
+                    <img class="gameImgs" src="${result[0].cover.url}">
+                    <input type="text" class="gameRating">
                     <h2>${ad.description}</h2>
                     <input id="id" type="hidden" value="${ad.id}" name="id">
                     <c:if test="${ad.username == sessionScope.user.username}">
                     <a class="btn btn-primary" href="/ads/edit-ad?id=${ad.id}">Edit</a>
                     <a class="btn btn-primary deletebtn" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
-                        <button class="test">test</button>
                     </c:if>
-
                 </div>
             </c:forEach>
-
-
+            <button id="button">dButton</button>
         </div>
     </div>
-
     <jsp:include page="/WEB-INF/partials/footer.jsp" />
 
 <script>
@@ -54,24 +50,63 @@
     }
 
 
-    var titleAmount = document.getElementsByClassName("gameTitle");
+    var gameTitles = document.getElementsByClassName("gameTitle");
 
-    // for (var i = 0, l = titleAmount.length; i < l; i++) {
-    //     console.log($('.gameList').first().children()[i].val());
-    //     console.log($('.'+gameList));
-    // }
+    var limitNum = gameTitles.length;
 
-    $('.gameTitle').each(function (i, obj) {
-        console.log(obj.value)
-        $.ajax("http://localhost:8080/hello?search="+obj.value);
-    });
+        $('.gameList').each(function (i, obj) {
+            console.log(obj);
+            var gameTitle = $(obj).children().first().html();
+            $.get("/hello?search="+ gameTitle).done(function(data) {
+                console.log(i);
+                console.log(data[0].cover.url);
+                console.log(data[0].rating);
+                var ratingObj = data[0].rating;
+                var rating = parseFloat(ratingObj).toFixed(2);
+                console.log(rating);
 
-    $(".test").click(function () {
-        console.log($('.gameList').first().children().next[0].innerHTML);
-    });
+                    $(obj).children().first().next().next().attr("src", data[0].cover.url);
+                    // $('.gameImgs').attr("src", data[0].cover.url);
+                    $('.gameRating').innerText = rating;
+            });
+        });
 
 
-    var test;
+    // $('.gameTitle').each(function (i, obj) {
+    //     console.log(obj.value);
+    //     $.get("/hello?search="+obj.value).done(function(data) {
+    //         console.log(data);
+    //         console.log(data[0].cover.url);
+    //         console.log(data[0].rating);
+    //         var ratingObj = data[0].rating;
+    //         var rating = parseFloat(ratingObj).toFixed(2);
+    //         console.log(rating);
+    //         $('.gameImgs').attr("src", data[0].cover.url);
+    //         $('.gameRating').innerText = rating;
+    //     });
+    // });
+
+    //
+    // $('#button').click(function () {
+    //     $('.gameTitle').each(function (i, obj) {
+    //         console.log(obj.value);
+    //         $.get("/hello?search="+obj.value).done(function(data) {
+    //             console.log(data);
+    //             console.log(data[0].cover.url);
+    //             console.log(data[0].rating);
+    //             url = data[0].cover.url;
+    //             var rating = data[0].rating;
+    //             $('.gameImgs').each(function (i, obj2, url) {
+    //                 console.log(url);
+    //                 console.log(obj2);
+    //                 $(obj2).css("src", url)
+    //             });
+    //         });
+    //     });
+    // })
+
+
+
 </script>
 </body>
 </html>
