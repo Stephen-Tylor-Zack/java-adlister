@@ -34,6 +34,14 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
+    private List<Ad> createAdsFromCat(ResultSet rs) throws SQLException {
+        List<Ad> adsCat = new ArrayList<>();
+        while (rs.next()) {
+            adsCat.add(extractForCatAd(rs));
+        }
+        return adsCat;
+    }
+
     @Override
     public List<Ad> findBySearch(String search){
         PreparedStatement stmt = null;
@@ -47,6 +55,20 @@ public class MySQLAdsDao implements Ads {
             stmt.setString(2, "%" + search + "%");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving search results.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> findByCategory(int id){
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("select * from ads_cat JOIN ads ON ads_cat.ads_id = ads.id " +
+                    "JOIN categories ON ads_cat.cats_id = categories.id where cats_id = ?");
+                    stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromCat(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving search results.", e);
         }
@@ -178,6 +200,21 @@ public class MySQLAdsDao implements Ads {
                 rs.getString("state")
         );
     }
+
+    private Ad extractForCatAd(ResultSet rs) throws SQLException {
+        return new Ad(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getInt("price"),
+                rs.getString("city"),
+                rs.getString("state"),
+                rs.getInt("cats_id"),
+                rs.getString("category")
+        );
+    }
+
 
     public Long delete(Long adId) {
         try {

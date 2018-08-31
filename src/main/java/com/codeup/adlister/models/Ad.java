@@ -2,7 +2,9 @@ package com.codeup.adlister.models;
 
 public class Ad {
     private String category;
-    private int cat_id;
+
+    private int cats_id;
+
     private long id;
     private long userId;
     private String title;
@@ -56,7 +58,8 @@ public class Ad {
     public Ad(long id, String title, String description) {
     }
 
-    public Ad(long id, long user_id, String title, String description, int price, String city, String state, int cat_id) {
+    public Ad(long id, long user_id, String title, String description, int price, String city, String state, int cats_id) {
+
         this.id = id;
         this.userId = user_id;
         this.title = title;
@@ -64,11 +67,12 @@ public class Ad {
         this.price = price;
         this.city = city;
         this.state = state;
-        this.cat_id = cat_id;
+        this.cats_id = cats_id;
 
     }
 
-    public Ad(long id, long user_id, String title, String description, int price, String city, String state, int cat_id, String category) {
+    public Ad(long id, long user_id, String title, String description, int price, String city, String state, int cats_id, String category) {
+
         this.id = id;
         this.userId = user_id;
         this.title = title;
@@ -76,7 +80,8 @@ public class Ad {
         this.price = price;
         this.city = city;
         this.state = state;
-        this.cat_id = cat_id;
+        this.cats_id = cats_id;
+
         this.category = category;
     }
 
@@ -145,12 +150,12 @@ public class Ad {
         this.username = username;
     }
 
-    public int getCat_id() {
-        return cat_id;
+    public int getCats_id() {
+        return cats_id;
     }
 
-    public void setCat_id(int cat_id) {
-        this.cat_id = cat_id;
+    public void setCats_id(int cat_id) {
+        this.cats_id = cat_id;
     }
 
     public String getCategory() {

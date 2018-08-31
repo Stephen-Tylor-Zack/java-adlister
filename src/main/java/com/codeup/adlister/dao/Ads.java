@@ -21,4 +21,6 @@ public interface Ads {
     Ad findById(long id);
   
     List<Ad> findBySearch(String search);
+
+    List<Ad> findByCategory(int search);
 }
