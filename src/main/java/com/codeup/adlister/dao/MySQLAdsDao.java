@@ -34,6 +34,14 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
+    private List<Ad> createAdsFromCat(ResultSet rs) throws SQLException {
+        List<Ad> ads = new ArrayList<>();
+        while (rs.next()) {
+            ads.add(extractForCatAd(rs));
+        }
+        return ads;
+    }
+
     @Override
     public List<Ad> findBySearch(String search){
         PreparedStatement stmt = null;
@@ -47,6 +55,23 @@ public class MySQLAdsDao implements Ads {
             stmt.setString(2, "%" + search + "%");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving search results.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> findByCategory(String category){
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT ads.*, categories.category " +
+                    "FROM ads " +
+                    "JOIN categories " +
+                    "ON categories.id = ads.cat_id " +
+                    "WHERE category = ?");
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromCat(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving search results.", e);
         }
@@ -187,6 +212,21 @@ public class MySQLAdsDao implements Ads {
                 rs.getString("state")
         );
     }
+
+    private Ad extractForCatAd(ResultSet rs) throws SQLException {
+        return new Ad(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getInt("price"),
+                rs.getString("city"),
+                rs.getString("state"),
+                rs.getInt("cat_id"),
+                rs.getString("category")
+        );
+    }
+
 
     public Long delete(Long adId) {
         try {

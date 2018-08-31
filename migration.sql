@@ -46,16 +46,22 @@ FROM categories
  JOIN ads_cat
    ON ads_cat.cats_id = categories.id
 WHERE cats_id IN (
- SELECT ads.cat_id
+ SELECT ads.id
  FROM ads
- WHERE ads_cat.ads_id = 2
+ WHERE ads_cat.ads_id = 1
 );
 
 SELECT t.*, t2.username, t2.email, t3.category
 FROM ads t LEFT JOIN users t2 ON t.user_id = t2.id
-LEFT JOIN ads_cat ON cat_id
+LEFT JOIN ads_cat ON cats_id
 LEFT JOIN categories t3 ON ads_cat.cats_id = t3.category
-WHERE t.id = 2 LIMIT 1;
+WHERE t.id = 1 LIMIT 1;
+
+SELECT ads.*, categories.category
+                    FROM ads
+                    JOIN categories
+                    ON categories.id = ads.cats_id
+                    WHERE category = 'playstation';
 
 
 INSERT INTO ads_cat(ads_id, cats_id)
@@ -70,8 +76,7 @@ VALUES ('Xbox'),
        ('PC');
 
 INSERT INTO ads (user_id, title, description, price, city, state)
-VALUES (1, 'Halo 5: Guardians', 'First-person shooter, Xbox One.', 15, 'San Antonio', 'Texas'),
-       (1, 'God of War', 'Action-adventure, rpg video game, PS4.', 35, 'San Antonio', 'Texas'),
+VALUES (1, 'Halo 6: Guardians', 'First-persaon shooter, Xbox One.', 15, 'San Antonio', 'Texas'),
        (2, 'Mario Kart 8', 'Cartoon, fantasy racing game, Nintendo Switch.', 40, 'Austin', 'Texas'),
        (2, 'Overwatch', 'Team based strategy first-person shooter.', 30, 'Austin', 'Texas');
 

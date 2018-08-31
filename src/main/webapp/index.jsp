@@ -11,5 +11,20 @@
     <div class="container">
         <h1>Welcome to the Next Level Game Lister! Pick your path</h1>
     </div>
+
+    <div action="/ads/category" name="category">
+        <a href="/ads/xbox"><h2>Xbox</h2></a>
+
+    </div>
+
+    <div>
+        <a href="/ads/category?=Playstation"><h2>PS4</h2></a>
+    </div>
+    <div>
+        <a href="/ads/category?=Nintendo"><h2>Nintendo</h2></a>
+    </div>
+    <div>
+        <a href="/ads/category?=PC"><h2>PC</h2></a>
+    </div>
 </body>
 </html>
