@@ -93,6 +93,10 @@ WHERE cats_id IN (
   WHERE ads.id = ads_cat.cats_id
 );
 
+select * from ads_cat JOIN ads ON ads_cat.ads_id = ads.id JOIN categories ON ads_cat.cats_id = categories.id where cats_id = 1;
+
+
+
 SELECT *
 FROM ads;
 

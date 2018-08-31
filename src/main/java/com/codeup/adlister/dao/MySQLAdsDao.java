@@ -35,11 +35,11 @@ public class MySQLAdsDao implements Ads {
     }
 
     private List<Ad> createAdsFromCat(ResultSet rs) throws SQLException {
-        List<Ad> ads = new ArrayList<>();
+        List<Ad> adsCat = new ArrayList<>();
         while (rs.next()) {
-            ads.add(extractForCatAd(rs));
+            adsCat.add(extractForCatAd(rs));
         }
-        return ads;
+        return adsCat;
     }
 
     @Override
@@ -61,15 +61,12 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> findByCategory(String category){
+    public List<Ad> findByCategory(int id){
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT ads.*, categories.category " +
-                    "FROM ads " +
-                    "JOIN categories " +
-                    "ON categories.id = ads.cat_id " +
-                    "WHERE category = ?");
-            stmt.setString(1, category);
+            stmt = connection.prepareStatement("select * from ads_cat JOIN ads ON ads_cat.ads_id = ads.id " +
+                    "JOIN categories ON ads_cat.cats_id = categories.id where cats_id = ?");
+                    stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromCat(rs);
         } catch (SQLException e) {
@@ -110,7 +107,7 @@ public class MySQLAdsDao implements Ads {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description, price, city, state) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-            stmt.setLong(1, ad.getUserId());
+            stmt.setLong(1, ad.getId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
             stmt.setInt(4, ad.getPrice());
@@ -222,7 +219,7 @@ public class MySQLAdsDao implements Ads {
                 rs.getInt("price"),
                 rs.getString("city"),
                 rs.getString("state"),
-                rs.getInt("cat_id"),
+                rs.getInt("cats_id"),
                 rs.getString("category")
         );
     }
