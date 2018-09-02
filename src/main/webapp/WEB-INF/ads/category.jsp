@@ -12,11 +12,11 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="${ad.catgory}" />
     </jsp:include>
+
 </head>
 <body>
-<h1>
-   test
-</h1>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+
 
 <c:forEach var="ad" items="${ads}">
     <div class="col-md-6">

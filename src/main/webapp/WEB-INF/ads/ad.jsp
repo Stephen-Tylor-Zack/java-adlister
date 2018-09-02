@@ -15,6 +15,7 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <h5>
     <c:out value="${ad.title}"/>
 </h5>

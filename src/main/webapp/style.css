@@ -1,7 +1,10 @@
 body{
     font-family: 'Audiowide', cursive;
-}
-
-#index {
 
 }
+
+.navbar {
+    background: black;
+    color: #4CAF50;
+}
+
