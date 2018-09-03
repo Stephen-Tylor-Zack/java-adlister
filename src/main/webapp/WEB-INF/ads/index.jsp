@@ -9,17 +9,25 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
+<div>
     <div class="row justify-content-center">
         <h1>Find your next adventure here...</h1>
     </div>
 
-    <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <a href="/ads/ad?id=${ad.id}"><h2>${ad.title}</h2></a>
-            <p>${ad.description}</p>
-        </div>
-    </c:forEach>
+
+
+<c:forEach var="ad" items="${ads}">
+<div class="text-center allcard">
+    <div class="card-header">
+        <a href="/ads/ad?id=${ad.id}"><h5>${ad.title}</h5></a>
+    </div>
+    <div class="card-body">
+        <p class="card-text">${ad.description}</p>
+        <a href="/ads/ad?id=${ad.id}" class="btn btn-primary">View Ad</a>
+    </div>
+</div>
+</c:forEach>
+
 </div>
 
 <jsp:include page="/WEB-INF/partials/footer.jsp" />

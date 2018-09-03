@@ -1,6 +1,75 @@
 body{
     font-family: 'Audiowide', cursive;
+    background-image: url("img/grey-abstract.jpg");
+    background-repeat: no-repeat;
+    background-size: cover ;
+    color: #f1f1f1;
 
+
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+.form-group {
+    color: gold;
+}
+
+.allcard {
+    width: 100%;
+    border: 1px solid black;
+    background-color: rgba(202,217,222,0.85);
+}
+
+.card {
+    width: 25%;
+}
+
+.solo {
+    color: purple;
+    left: 35%;
+    top: 25%;
+    width: 35%;
+}
+
+.card-body {
+    color: purple;
+
+}
+
+.card-img-top {
+    top: 200px;
+    height:30%;
+    width: 100%;
+}
+
+
+
+/* Style the container for inputs */
+.container {
+    background-color: rgba(202,217,222,0.85);
+    padding: 20px;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 18px;
 }
 
 .navbar {

@@ -7,6 +7,7 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="../partials/navbar.jsp" />
 <div class="container">
     <h1>Create a new Ad</h1>
     <form action="/ads/create" method="post">
@@ -15,7 +16,7 @@
             <%=titleError%>
             <input id="title" name="title" class="form-control" type="text">
         </div>
-        <div class="form-group">
+        <div class="form-group primary">
             <label for="description">Description</label>
             <textarea id="description" name="description" class="form-control" type="text"></textarea>
         </div>
@@ -33,10 +34,10 @@
         </div>
         <div class="form-group">
             <label>Category</label><br>
-            <input type="checkbox" name="cats_id" value="1"> Xbox<br>
-            <input type="checkbox" name="cats_id" value="2"> Playstation<br>
-            <input type="checkbox" name="cats_id" value="3"> Nintendo<br>
-            <input type="checkbox" name="cats_id" value="4"> PC <br>
+            <input type="checkbox" name="cats_id" value="1"> Xbox
+            <input type="checkbox" name="cats_id" value="2"> Playstation
+            <input type="checkbox" name="cats_id" value="3"> Nintendo
+            <input type="checkbox" name="cats_id" value="4"> PC
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
