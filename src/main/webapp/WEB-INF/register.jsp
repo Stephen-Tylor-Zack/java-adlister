@@ -14,15 +14,11 @@
             margin-bottom: 16px;
         }
 
-        /* Style the submit button */
-        input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-        }
+
 
         /* Style the container for inputs */
         .container {
-            background-color: #f1f1f1;
+            background-color: rgba(202,217,222,0.5);
             padding: 20px;
         }
 

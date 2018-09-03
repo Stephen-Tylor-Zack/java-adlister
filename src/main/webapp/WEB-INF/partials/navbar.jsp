@@ -35,10 +35,10 @@
         <ul class="nav navbar-nav navbar-right">
             <c:choose>
                 <c:when test="${sessionScope.user != null}" >
-                    <div class="container text-right p-0 mr-2">
+                    <div class="text-right p-0 mr-2">
                         <li>Welcome, ${sessionScope.user.username}!</li>
                     </div>
-                    <div class="container text-right p-0 mr-2">
+                    <div class="text-right p-0 mr-2">
                         <li><a href="/logout">Logout</a></li>
                     </div>
                 </c:when>

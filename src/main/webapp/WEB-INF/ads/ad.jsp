@@ -16,20 +16,18 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-<h5>
-    <c:out value="${ad.title}"/>
-</h5>
-<p>
-    <c:out value="${ad.description}"/>
-</p>
-
-<p>
-    <c:out value="post by: ${ad.username}"/><br>
-    <c:out value="price: $${ad.price}"/><br>
-    <c:out value="location: ${ad.city}, ${ad.state}"/><br>
 
 
-</p>
+
+
+<div class="card solo">
+    <h5 class="card-header"><c:out value="${ad.title}"/></h5>
+    <div class="card-body">
+        <p class="card-text"><c:out value="post by: ${ad.username}"/><br>
+            <c:out value="price: $${ad.price}"/><br>
+            <c:out value="location: ${ad.city}, ${ad.state}"/><br></p>
+    </div>
+</div>
 
 
 
