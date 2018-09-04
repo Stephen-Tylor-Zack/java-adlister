@@ -78,7 +78,8 @@ VALUES ('Xbox'),
        ('PC');
 
 INSERT INTO ads (user_id, title, description, price, city, state)
-VALUES (1, 'Halo 6: Guardians', 'First-persaon shooter, Xbox One.', 15, 'San Antonio', 'Texas'),
+VALUES (1, 'Halo 5: Guardians', 'First-person shooter, Xbox One.', 15, 'San Antonio', 'Texas'),
+       (2, 'God of War, mythology-based action-adventure hack and slash video game franchise. ,Playstation, 25, San Antonio, Texas'),
        (2, 'Mario Kart 8', 'Cartoon, fantasy racing game, Nintendo Switch.', 40, 'Austin', 'Texas'),
        (2, 'Overwatch', 'Team based strategy first-person shooter.', 30, 'Austin', 'Texas');
 

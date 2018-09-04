@@ -17,11 +17,15 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-
 <c:forEach var="ad" items="${ads}">
-    <div class="col-md-6">
-        <a href="/ads/ad?id=${ad.id}"><h2>${ad.title}</h2></a>
-        <p>${ad.description}</p>
+    <div class="text-center allcard">
+        <div class="card-header">
+            <a href="/ads/ad?id=${ad.id}"><h5>${ad.title}</h5></a>
+        </div>
+        <div class="card-body">
+            <p class="card-text">${ad.description}</p>
+            <a href="/ads/ad?id=${ad.id}" class="btn btn-primary">View Ad</a>
+        </div>
     </div>
 </c:forEach>
 
