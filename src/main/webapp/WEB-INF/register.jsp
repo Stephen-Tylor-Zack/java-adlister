@@ -50,7 +50,8 @@
     <form action="/register" method="post">
         <div class="form-group">
             <label for="username">Username</label>
-            <%=error%>
+
+            <p style="color:red"><%=error%></p>
             <input id="username" name="username" class="form-control" type="text" required>
         </div>
         <div class="form-group">

@@ -14,6 +14,10 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     public static String error = "";
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("user") != null) {
+            response.sendRedirect("/profile");
+            return;
+        }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 

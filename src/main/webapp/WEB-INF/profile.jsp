@@ -25,28 +25,22 @@
                     <h1>${ad.title}</h1>
                     <h2>${ad.description}</h2>
                     <a class="btn btn-primary" href="/ads/edit-ad?id=${ad.id}">Edit</a>
-                    <a class="btn btn-primary" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
-
-
-
+                    <a class="btn btn-primary deletebtn" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
                 </div>
             </c:forEach>
-
-
         </div>
     </div>
 
     <jsp:include page="/WEB-INF/partials/footer.jsp" />
 
 <script>
-    document.getElementById("deletebtn").addEventListener("click", function (ev) {
-      var deleteChoice = confirm("Are you sure you want to delete?");
-        if (deleteChoice) {
-
-        }
-    });
-    console.log(document.getElementById("adId" + "${ad.id}"));
-
+    var elems = document.getElementsByClassName("deletebtn");
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
 </script>
 </body>
 </html>
