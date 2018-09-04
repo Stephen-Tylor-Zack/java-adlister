@@ -16,6 +16,7 @@ public class EditProfileServlet extends HttpServlet {
     public static String error = "";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().getAttribute("user");
         request.getRequestDispatcher("/WEB-INF/edit-profile.jsp").forward(request, response);
     }
 
@@ -28,12 +29,13 @@ public class EditProfileServlet extends HttpServlet {
             User user = new User(id, username, email, password);
             DaoFactory.getUsersDao().update(user);
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/profile");
         }catch (Exception e) {
-            response.sendRedirect("/profile");
 
         }
-
+        User updatedUser = DaoFactory.getUsersDao().findByUsername(username);
+        request.getSession().removeAttribute("user");
+        request.getSession().setAttribute("user", updatedUser);
+        response.sendRedirect("/profile");
 
     }
 }

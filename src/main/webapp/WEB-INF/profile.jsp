@@ -26,13 +26,8 @@
                     <h2>${ad.description}</h2>
                     <a class="btn btn-primary" href="/ads/edit-ad?id=${ad.id}">Edit</a>
                     <a class="btn btn-primary" id="deletebtn" href="/ads/delete-ad?id=${ad.id}">Delete</a>
-
-
-
                 </div>
             </c:forEach>
-
-
         </div>
     </div>
 
