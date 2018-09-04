@@ -52,35 +52,9 @@ input {
 /* Styling for create ad categories */
 
 
-.checkboxes {
-    position: relative;
-    display: block;
-}
-
-.categoryLabel {
-    position: absolute;
-    display: inline;
-}
-
 .categorySelect:checked + .categoryLabel {
     font-weight: bold;
     color: green;
-}
-
-#xboxlabel {
-    bottom: 2px;
-}
-
-#playstationlabel {
-    bottom: 250px;
-}
-
-#nintendolabel {
-    bottom: 217px;
-}
-
-#pclabel {
-    bottom: 182px;
 }
 
 
